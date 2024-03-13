@@ -1,0 +1,48 @@
+.header {
+    background-color: #3a678f;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 0.8rem;
+}
+
+
+.header .title a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    width: 100%;
+
+}
+
+.navList {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.navItem {
+    margin-left: 25px;
+}
+
+.navItem a {
+    color: #fff;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .nav-item {
+        margin: 0 10px;
+    }
+}
