@@ -1,5 +1,4 @@
 import React from "react"
-import PathConstants from "./pathConstants"
 
 const Unauthorized = React.lazy(() => import("../pages/UnauthorizedPage"))
 const Home = React.lazy(() => import("../pages/Home"))
@@ -11,8 +10,37 @@ const role: 'admin' | 'user' | 'anonymous' = 'anonymous'
 
 
 const routes = [
-    { path: PathConstants.HOME.path, element: PathConstants.HOME.allow.includes(role) ? <Home /> : <Unauthorized /> },
-    { path: PathConstants.DATA.path, element: PathConstants.DATA.allow.includes(role) ? <Data /> : <Unauthorized /> },
-    { path: PathConstants.SETTINGS.path, element: PathConstants.SETTINGS.allow.includes(role) ? <Settings /> : <Unauthorized /> },
+    {
+        title: 'home',
+        path: '/',
+        element: <Home />,
+        allow: ['admin', 'user', 'anonymous'],
+        isOnHeader: true
+    },
+    {
+        title: 'data',
+        path: '/data',
+        element: <Data />,
+        allow: ['admin', 'user'],
+        isOnHeader: false
+    },
+    {
+        title: 'settings',
+        path: '/settings',
+        element: <Settings />,
+        allow: ['admin'],
+        isOnHeader: true
+    }
 ]
-export default routes
+
+const protectedRoutes = routes.map((route) => {
+    if (!route.allow.includes(role)) {
+        route.element = <Unauthorized />
+        return route
+    }
+    return route
+})
+
+
+
+export default protectedRoutes
