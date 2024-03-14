@@ -1,7 +1,7 @@
 import React from "react"
 import Products from "../pages/Products"
 import Product from "../pages/Product"
-import productDetailsLoader from '../loader/productDetailsLoader'
+import { productDetailsLoader, updateProductName } from '../routingFunctions/productMockAPI'
 
 const Unauthorized = React.lazy(() => import("../pages/UnauthorizedPage"))
 const Home = React.lazy(() => import("../pages/Home"))
@@ -46,6 +46,7 @@ const routes = [
         path: '/products/:slug',
         element: <Product />,
         loader: productDetailsLoader, // fetch data before this route or their children routes render
+        action: updateProductName, // when this is called, the loader is automatically revalidated as well
         errorElement: (<p style={{ display: 'flex', justifyContent: 'center', color: 'blue', fontSize: '2rem' }}>Product error page</p>),
         allow: ['admin', 'user', 'anonymous'],
         isOnHeader: false
