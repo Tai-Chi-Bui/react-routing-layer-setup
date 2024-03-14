@@ -12,7 +12,7 @@ const NavItem: React.FC = () => {
                 Routes.map((route) => {
                     if (route.isOnHeader) {
                         return (
-                            <li className={styles.navItem}>
+                            <li className={styles.navItem} key={route.title}>
                                 <Link to={route.path}>{route.title.toUpperCase()}</Link>
                             </li>
                         )

@@ -1,4 +1,7 @@
 import React from "react"
+import Products from "../pages/Products"
+import Product from "../pages/Product"
+import productDetailsLoader from '../loader/productDetailsLoader'
 
 const Unauthorized = React.lazy(() => import("../pages/UnauthorizedPage"))
 const Home = React.lazy(() => import("../pages/Home"))
@@ -30,6 +33,22 @@ const routes = [
         element: <Settings />,
         allow: ['admin'],
         isOnHeader: true
+    },
+    {
+        title: 'products',
+        path: '/products',
+        element: <Products />,
+        allow: ['admin', 'user', 'anonymous'],
+        isOnHeader: true
+    },
+    {
+        title: 'product',
+        path: '/products/:slug',
+        element: <Product />,
+        loader: productDetailsLoader, // fetch data before this route or their children routes render
+        errorElement: (<p style={{ display: 'flex', justifyContent: 'center', color: 'blue', fontSize: '2rem' }}>Product error page</p>),
+        allow: ['admin', 'user', 'anonymous'],
+        isOnHeader: false
     }
 ]
 

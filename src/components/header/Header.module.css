@@ -31,9 +31,14 @@
     margin-left: 25px;
 }
 
+
 .navItem a {
     color: #fff;
     text-decoration: none;
+}
+
+.navItem a:hover {
+    color: rgb(182, 32, 32)
 }
 
 @media (max-width: 768px) {
